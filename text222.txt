@@ -1,19 +1,19 @@
 #define _CRT_SECURE_NO_WARNINGS
-//scanf¹®À» »ç¿ëÇÏ¹Ç·Î °æ°í¸Þ½ÃÁö°¡ ³ª¿ÀÁö ¾Êµµ·Ï ÇÑ´Ù.
+//scanfë¬¸ì„ ì‚¬ìš©í•˜ë¯€ë¡œ ê²½ê³ ë©”ì‹œì§€ê°€ ë‚˜ì˜¤ì§€ ì•Šë„ë¡ í•œë‹¤.
 
-//Çì´õÆÄÀÏ Á¤ÀÇ
+//í—¤ë”íŒŒì¼ ì •ì˜
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
 
-//½ºÅÃÀÇ ÃÊ±â°ª ¼³Á¤
+//ìŠ¤íƒì˜ ì´ˆê¸°ê°’ ì„¤ì •
 int OperatorTop = 0;  
-//¿¬»êÀÚ ½ºÅÃÀÇ ÃÊ±â°ª
+//ì—°ì‚°ìž ìŠ¤íƒì˜ ì´ˆê¸°ê°’
 int ValueTop = 0;
-//°ªÀÇ ½ºÅÃÀÇ ÃÊ±â°ª
+//ê°’ì˜ ìŠ¤íƒì˜ ì´ˆê¸°ê°’
 
-char OperatorStack[100]; //½ºÅÃ ¿¬»êÀÚ ¹è¿­
-char ValueStack[100];  //½ºÅÃ °ª ¹è¿­
+char OperatorStack[100]; //ìŠ¤íƒ ì—°ì‚°ìž ë°°ì—´
+char ValueStack[100];  //ìŠ¤íƒ ê°’ ë°°ì—´
 
 
 
@@ -24,7 +24,7 @@ int IsEmptyValueStack()
 		return 1;
 	else return 0;
 }
-//°ª ½ºÅÃ ¹è¿­ÀÌ ºñ¾îÀÖ´Â »óÅÂÀÎÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+//ê°’ ìŠ¤íƒ ë°°ì—´ì´ ë¹„ì–´ìžˆëŠ” ìƒíƒœì¸ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
 
 
 int Is_Empty_OperatorStack()
@@ -33,7 +33,7 @@ int Is_Empty_OperatorStack()
 		return 1;
 	else return 0;
 }
-//¿¬»êÀÚ ½ºÅÃ ¹è¿­ÀÌ ºñ¾îÀÖ´Â »óÅÂÀÎÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+//ì—°ì‚°ìž ìŠ¤íƒ ë°°ì—´ì´ ë¹„ì–´ìžˆëŠ” ìƒíƒœì¸ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
 
 
 
@@ -41,24 +41,24 @@ void OperatorPush(char opr)
 {
 	OperatorStack[OperatorTop++] = opr;
 }
-//¿¬»êÀÚ ½ºÅÃ¿¡ ¿¬»êÀÚ¸¦ ÀÔ·ÂÇÏ´Â ÇÔ¼ö
-//ÀÔ·Â½Ã ¿¬»êÀÚÀÇ ÃÊ±â°ªÀ» 1 Áõ°¡½ÃÅ²´Ù.
+//ì—°ì‚°ìž ìŠ¤íƒì— ì—°ì‚°ìžë¥¼ ìž…ë ¥í•˜ëŠ” í•¨ìˆ˜
+//ìž…ë ¥ì‹œ ì—°ì‚°ìžì˜ ì´ˆê¸°ê°’ì„ 1 ì¦ê°€ì‹œí‚¨ë‹¤.
 
 
 void ValuePush(int value)
 {
 	ValueStack[ValueTop++] = value;
 }
-//°ª ½ºÅÃ¿¡ °ªÀ» ÀÔ·ÂÇÏ´Â ÇÔ¼ö
-//ÀÔ·Â½Ã °ªÀÇ ÃÊ±â°ªÀ» 1 Áõ°¡½ÃÅ²´Ù.
+//ê°’ ìŠ¤íƒì— ê°’ì„ ìž…ë ¥í•˜ëŠ” í•¨ìˆ˜
+//ìž…ë ¥ì‹œ ê°’ì˜ ì´ˆê¸°ê°’ì„ 1 ì¦ê°€ì‹œí‚¨ë‹¤.
 
 
 char OperatorPop()
 {
 	return OperatorStack[--OperatorTop];
 }
-//¿¬»êÀÚ¸¦ ²¨³»±â À§ÇÑ ÇÔ¼ö
-//°á°ú °ªÀ¸·Î´Â °¡Àå ¸¶Áö¸·¿¡ ÀÖ´Â ¿¬»êÀÚ°¡ ¹ÝÈ¯µÈ´Ù.
+//ì—°ì‚°ìžë¥¼ êº¼ë‚´ê¸° ìœ„í•œ í•¨ìˆ˜
+//ê²°ê³¼ ê°’ìœ¼ë¡œëŠ” ê°€ìž¥ ë§ˆì§€ë§‰ì— ìžˆëŠ” ì—°ì‚°ìžê°€ ë°˜í™˜ëœë‹¤.
 
 
 
@@ -67,8 +67,8 @@ int ValuePop()
 	return ValueStack[--ValueTop];
 }
 
-//°ªÀ» ²¨³»±â À§ÇÑ ÇÔ¼ö
-//°á°ú °ªÀ¸·Î´Â °¡Àå ¸¶Áö¸·¿¡ ÀÖ´Â °ªÀÌ ¹ÝÈ¯µÈ´Ù.
+//ê°’ì„ êº¼ë‚´ê¸° ìœ„í•œ í•¨ìˆ˜
+//ê²°ê³¼ ê°’ìœ¼ë¡œëŠ” ê°€ìž¥ ë§ˆì§€ë§‰ì— ìžˆëŠ” ê°’ì´ ë°˜í™˜ëœë‹¤.
 
 
 
@@ -85,8 +85,8 @@ int Priority(char opr1, char opr2)
 	}
 	else return 0;
 }
-//°ö¼ÀÀÌ³ª ³ª´°¼ÀÀº µ¡¼À°ú »¬¼Àº¸´Ù ¿ì¼±½Ã µÇ¾î¾ß ÇÑ´Ù.
-//±×¿¡ µû¸¥ ¼ø¼­¸¦ Á¤ÇØÁÖ´Â ÇÔ¼ö
+//ê³±ì…ˆì´ë‚˜ ë‚˜ëˆ—ì…ˆì€ ë§ì…ˆê³¼ ëº„ì…ˆë³´ë‹¤ ìš°ì„ ì‹œ ë˜ì–´ì•¼ í•œë‹¤.
+//ê·¸ì— ë”°ë¥¸ ìˆœì„œë¥¼ ì •í•´ì£¼ëŠ” í•¨ìˆ˜
 
 
 
@@ -107,8 +107,8 @@ int Calculate(int value1, int value2, char opr)
 
 	return value1;
 }
-//°ª 2°³¸¦ ÀÔ·Â¹Þ°í ¿¬»êÀÚ¸¦ ÀÔ·Â¹Þ¾ÒÀ»¶§ »ê¼ú°è»êÀ» ÇÏ´Â ÇÔ¼ö
-//ÀÔ·ÂÀº °è»ê ÇÒ °ª 2°³¿Í charÇü ¿¬»êÀÚ¸¦ ÀÔ·Â¹Þ´Â´Ù.
+//ê°’ 2ê°œë¥¼ ìž…ë ¥ë°›ê³  ì—°ì‚°ìžë¥¼ ìž…ë ¥ë°›ì•˜ì„ë•Œ ì‚°ìˆ ê³„ì‚°ì„ í•˜ëŠ” í•¨ìˆ˜
+//ìž…ë ¥ì€ ê³„ì‚° í•  ê°’ 2ê°œì™€ charí˜• ì—°ì‚°ìžë¥¼ ìž…ë ¥ë°›ëŠ”ë‹¤.
 
 
 int Calculate2(int value1, int value2, char opr)
@@ -130,52 +130,52 @@ int Calculate2(int value1, int value2, char opr)
 
 	return value1;
 }
-//CaluetateÇÔ¼ö¿Í ºñ½ÁÇÏÁö¸¸ Ãß°¡ ¿¬»ê½Ã¿¡´Â »¬¼À ¿¬»ê½Ã Æ¯ÀÌ»çÇ×À» °í·ÁÇÒ ÇÊ¿ä°¡ ¾øÀ¸¹Ç·Î
-//switch¿¡ »¬¼À ÆÄÆ®¸¦ Ãß°¡ÇÏ¿´´Ù.
-//Å×ÀÌºí°ª°ú Ãß°¡¿¬»êÀÚ, Ãß°¡¿¬»ê°ªÀ» ÀÎÇ²À¸·Î ¹Þ°í °á°ú¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼öÀÌ´Ù.
+//Caluetateí•¨ìˆ˜ì™€ ë¹„ìŠ·í•˜ì§€ë§Œ ì¶”ê°€ ì—°ì‚°ì‹œì—ëŠ” ëº„ì…ˆ ì—°ì‚°ì‹œ íŠ¹ì´ì‚¬í•­ì„ ê³ ë ¤í•  í•„ìš”ê°€ ì—†ìœ¼ë¯€ë¡œ
+//switchì— ëº„ì…ˆ íŒŒíŠ¸ë¥¼ ì¶”ê°€í•˜ì˜€ë‹¤.
+//í…Œì´ë¸”ê°’ê³¼ ì¶”ê°€ì—°ì‚°ìž, ì¶”ê°€ì—°ì‚°ê°’ì„ ì¸í’‹ìœ¼ë¡œ ë°›ê³  ê²°ê³¼ë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜ì´ë‹¤.
 
 
 
 void main()
 {
 	
-	int i=0;  //±âº»ÀûÀÎ Ä«¿îÆ®¸¦ À§ÇÑ º¯¼ö
-	int len;  //ÀÔ·Â¹ÞÀº ¹®ÀÚ¿­ÀÇ ±æÀÌ¸¦ ÀúÀåÇÏ´Â º¯¼ö
+	int i=0;  //ê¸°ë³¸ì ì¸ ì¹´ìš´íŠ¸ë¥¼ ìœ„í•œ ë³€ìˆ˜
+	int len;  //ìž…ë ¥ë°›ì€ ë¬¸ìžì—´ì˜ ê¸¸ì´ë¥¼ ì €ìž¥í•˜ëŠ” ë³€ìˆ˜
 	int check_signal = 0;  
-	int value1, value2; //¿¬»êÀ» ÇÒ¶§ °ª 2°³¸¦ ¼­·Î ºñ±³ÇØ¾ß ÇÏ¹Ç·Î °ª¿¡ ´ëÇÑ º¯¼ö¸¦ 2°³ Á¤ÀÇÇØÁØ´Ù.
-	int table; //¸ðµç ¿¬»êÀÌ ³¡³µÀ»¶§ °á°ú°ªÀ» ÀúÀåÇÏ´Â º¯¼ö
+	int value1, value2; //ì—°ì‚°ì„ í• ë•Œ ê°’ 2ê°œë¥¼ ì„œë¡œ ë¹„êµí•´ì•¼ í•˜ë¯€ë¡œ ê°’ì— ëŒ€í•œ ë³€ìˆ˜ë¥¼ 2ê°œ ì •ì˜í•´ì¤€ë‹¤.
+	int table; //ëª¨ë“  ì—°ì‚°ì´ ëë‚¬ì„ë•Œ ê²°ê³¼ê°’ì„ ì €ìž¥í•˜ëŠ” ë³€ìˆ˜
 	int count1 = 0;
 	int count2 = 0;
 
-	char buf[100]; //strcpy·Î ÀÔ·Â¹ÞÀº ¹®ÀÚ¿­À» ÀúÀåÇÏ´Â ¹è¿­
-	char input[100];  //Ã³À½¿¡ ÀÔ·Â¹ÞÀº ¹®ÀÚ¿­À» ÀúÀåÇÏ´Â ¹è¿­
-	char opr; //¿¬»êÀÚ º¯¼ö
-	char opr2[100]; //Ãß°¡ °è»êÀ» À§ÇØ ¿¬»êÀÚ¸¦ ÀÔ·Â ¹Þ´Â ¹è¿­
-	char A; //¿¬»êÀÚ °ü°èº¯¼ö
-	char temp;//°ýÈ£ ¿¬»êÀ» À§ÇÑ º¯¼ö
+	char buf[100]; //strcpyë¡œ ìž…ë ¥ë°›ì€ ë¬¸ìžì—´ì„ ì €ìž¥í•˜ëŠ” ë°°ì—´
+	char input[100];  //ì²˜ìŒì— ìž…ë ¥ë°›ì€ ë¬¸ìžì—´ì„ ì €ìž¥í•˜ëŠ” ë°°ì—´
+	char opr; //ì—°ì‚°ìž ë³€ìˆ˜
+	char opr2[100]; //ì¶”ê°€ ê³„ì‚°ì„ ìœ„í•´ ì—°ì‚°ìžë¥¼ ìž…ë ¥ ë°›ëŠ” ë°°ì—´
+	char A; //ì—°ì‚°ìž ê´€ê³„ë³€ìˆ˜
+	char temp;//ê´„í˜¸ ì—°ì‚°ì„ ìœ„í•œ ë³€ìˆ˜
 	
-	int nValue;  //¸ðµç ¿¬»êÀÌ ³¡³­ÈÄ¿¡ Ãß°¡¿¬»ê ½Ã Ãß°¡ ¿¬»êÇÒ °ªÀ» ÀúÀåÇÏ´Â º¯¼ö
+	int nValue;  //ëª¨ë“  ì—°ì‚°ì´ ëë‚œí›„ì— ì¶”ê°€ì—°ì‚° ì‹œ ì¶”ê°€ ì—°ì‚°í•  ê°’ì„ ì €ìž¥í•˜ëŠ” ë³€ìˆ˜
 
 
 	printf("----------------------------------------------\n");
-	printf("\n½ºÅÃÀ» È°¿ëÇÑ °è»êÀ» ½ÃÀÛÇÕ´Ï´Ù.\n");
+	printf("\nìŠ¤íƒì„ í™œìš©í•œ ê³„ì‚°ì„ ì‹œìž‘í•©ë‹ˆë‹¤.\n");
 	printf("\n----------------------------------------------\n");
-  	printf("°ýÈ£¿¡ ÁÖÀÇÇÏ¿© °è»ê ÇÒ ¼ö½ÄÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+  	printf("ê´„í˜¸ì— ì£¼ì˜í•˜ì—¬ ê³„ì‚° í•  ìˆ˜ì‹ì„ ìž…ë ¥í•´ì£¼ì„¸ìš” : ");
 	scanf("%s", &input);
-	//°ýÈ£¸¦ Æ÷ÇÔÇÑ »óÅÂÀÇ ¹®ÀÚ¿­ ÇüÅÂ ¼ö½ÄÀ» ÀÔ·Â¹Þ¾Æ input¿¡ ÀúÀåÇÑ´Ù.
+	//ê´„í˜¸ë¥¼ í¬í•¨í•œ ìƒíƒœì˜ ë¬¸ìžì—´ í˜•íƒœ ìˆ˜ì‹ì„ ìž…ë ¥ë°›ì•„ inputì— ì €ìž¥í•œë‹¤.
 
 	
 
 	strcpy(buf, input);
-	//input¿¡ ÀúÀåÇÑ ¹®ÀÚ¿­À» buf ¹è¿­·Î º¹»çÇÑ´Ù.
+	//inputì— ì €ìž¥í•œ ë¬¸ìžì—´ì„ buf ë°°ì—´ë¡œ ë³µì‚¬í•œë‹¤.
 
 	len = strlen(buf);
-	//buf ¹è¿­¿¡ ÀÖ´Â ¹®ÀÚ¿­ÀÇ ±æÀÌ¸¦ len º¯¼ö¿¡ ÀúÀåÇÑ´Ù.
+	//buf ë°°ì—´ì— ìžˆëŠ” ë¬¸ìžì—´ì˜ ê¸¸ì´ë¥¼ len ë³€ìˆ˜ì— ì €ìž¥í•œë‹¤.
 
 	
 
-	//°ýÈ£ÀÇ ½ÖÀÌ ¸Â´ÂÁö È®ÀÎÇÏ±â À§ÇÑ °è»ê½Ä
-	//'('¿Í ')'ÀÇ °¹¼ö¸¦ ¼¼¼­ ¼­·ÎÀÇ ½ÖÀÌ ¸Â´ÂÁö Ã¼Å©ÇÑ´Ù.
+	//ê´„í˜¸ì˜ ìŒì´ ë§žëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•œ ê³„ì‚°ì‹
+	//'('ì™€ ')'ì˜ ê°¯ìˆ˜ë¥¼ ì„¸ì„œ ì„œë¡œì˜ ìŒì´ ë§žëŠ”ì§€ ì²´í¬í•œë‹¤.
 	for (i = 0; i < len; i++)
 	{
 
@@ -193,27 +193,27 @@ void main()
 
 		if (count1 != count2)
 		{
-			printf("°ýÈ£ÀÇ ½ÖÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.\n");
+			printf("ê´„í˜¸ì˜ ìŒì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.\n");
 		}
 		else
-			printf("°ýÈ£ÀÇ ½ÖÀÌ ÀÏÄ¡ÇÕ´Ï´Ù.\n");
+			printf("ê´„í˜¸ì˜ ìŒì´ ì¼ì¹˜í•©ë‹ˆë‹¤.\n");
 
 	i=0;
-	//i °ªÀ» ´Ù½Ã ÃÊ±âÈ­
+	//i ê°’ì„ ë‹¤ì‹œ ì´ˆê¸°í™”
 		
 
 	while (i<len){
 		A = buf[i++];
-		//¹Ýº¹¹®Àº ¹®ÀÚ¿­ÀÇ ±æÀÌ ¸¸Å­ ¹Ýº¹ÇÑ´Ù.
-		//Aº¯¼ö´Â ¹®ÀÚ¿­ÀÇ Ã¹ ¹øÂ° ºÎÅÍ ÁøÇàÇÑ´Ù.
+		//ë°˜ë³µë¬¸ì€ ë¬¸ìžì—´ì˜ ê¸¸ì´ ë§Œí¼ ë°˜ë³µí•œë‹¤.
+		//Aë³€ìˆ˜ëŠ” ë¬¸ìžì—´ì˜ ì²« ë²ˆì§¸ ë¶€í„° ì§„í–‰í•œë‹¤.
 
-		//ÇöÀç Ã¼Å©ÇÏ°í ÀÖ´Â ¹®ÀÚ¿­ÀÇ ¹øÁö°¡ °ø¹éÀÎ °æ¿ì
+		//í˜„ìž¬ ì²´í¬í•˜ê³  ìžˆëŠ” ë¬¸ìžì—´ì˜ ë²ˆì§€ê°€ ê³µë°±ì¸ ê²½ìš°
 		if (A == ' ')  continue;
 		else if ('0' <= A && A <= '9')
 		{
-			//check_signalÀÇ ÃÊ±â°ªÀº 0À¸·Î ÀâÇôÀÖ´Ù.
-			//Aº¯¼ö°¡ 0~9ÀÇ °ªÀ» °¡Áú °æ¿ì Ã¼Å©
-			//0~9»çÀÌÀÇ °ªÀÌ¶ó°í ÆÇ´ÜµÉ °æ¿ì °ª½ºÅÃ ¹è¿­¿¡ »ðÀÔÇÑ´Ù.
+			//check_signalì˜ ì´ˆê¸°ê°’ì€ 0ìœ¼ë¡œ ìž¡í˜€ìžˆë‹¤.
+			//Aë³€ìˆ˜ê°€ 0~9ì˜ ê°’ì„ ê°€ì§ˆ ê²½ìš° ì²´í¬
+			//0~9ì‚¬ì´ì˜ ê°’ì´ë¼ê³  íŒë‹¨ë  ê²½ìš° ê°’ìŠ¤íƒ ë°°ì—´ì— ì‚½ìž…í•œë‹¤.
 			if (check_signal != 1) ValuePush(A - '0');   
 			else
 			{
@@ -222,8 +222,8 @@ void main()
 			}
 		}
 
-		//Ã¼Å©ÇÏ°í ÀÖ´Â ¹®ÀÚ¿­ÀÌ ¿¬»êÀÚÀÎ °æ¿ìÀÌ´Ù.
-		//»¬¼À ¿¬»êÀÌ ÀÖ´Â °æ¿ì signalÀ» 1·Î º¯°æÇÏ°í ¿ø·¡ ¿¬»êÀÚ°ªÀ» +·Î º¯°æÇÑ´Ù.
+		//ì²´í¬í•˜ê³  ìžˆëŠ” ë¬¸ìžì—´ì´ ì—°ì‚°ìžì¸ ê²½ìš°ì´ë‹¤.
+		//ëº„ì…ˆ ì—°ì‚°ì´ ìžˆëŠ” ê²½ìš° signalì„ 1ë¡œ ë³€ê²½í•˜ê³  ì›ëž˜ ì—°ì‚°ìžê°’ì„ +ë¡œ ë³€ê²½í•œë‹¤.
 		else 
 		if (A == '+' || A == '-' || A == '*' || A == '/'){
 			if (A == '-')
@@ -234,14 +234,14 @@ void main()
 
 			if (Is_Empty_OperatorStack())
 				OperatorPush(A);
-			//¿¬»êÀÚ ½ºÅÃÀÌ ºñ¾ú´Ù¸é ¿¬»êÀÚ¸¦ ³Ö¾îÁØ´Ù.
+			//ì—°ì‚°ìž ìŠ¤íƒì´ ë¹„ì—ˆë‹¤ë©´ ì—°ì‚°ìžë¥¼ ë„£ì–´ì¤€ë‹¤.
 
 
 			else{
 				opr = OperatorPop();
 				
 
-				//¿¬»êÀÚ ½ºÅÃ¿¡ ¿¬»êÀÚ°¡ ÀÖÀ¸¸é A¿¡ ÀúÀåÇÑ ¿¬»êÀÚ¿Í ÇöÀç ¿¬»êÀÚ ½ºÅÃ°ª°ú ¾î´À ¿¬»êÀÚ¸¦ ¸ÕÀú ÇÒÁö ºñ±³ÇÑ´Ù.
+				//ì—°ì‚°ìž ìŠ¤íƒì— ì—°ì‚°ìžê°€ ìžˆìœ¼ë©´ Aì— ì €ìž¥í•œ ì—°ì‚°ìžì™€ í˜„ìž¬ ì—°ì‚°ìž ìŠ¤íƒê°’ê³¼ ì–´ëŠ ì—°ì‚°ìžë¥¼ ë¨¼ì € í• ì§€ ë¹„êµí•œë‹¤.
 				if (Priority(opr, A))
 				{
 					value2 = ValuePop();
@@ -252,7 +252,7 @@ void main()
 					OperatorPush(A);
 				}
 
-				//±âÁ¸ °ª ½ºÅÃ¿¡ ÀÖ´Â °ªÀ» ¸ÕÀú °è»ê ÇØ¾ßµÇ¸é °è»êÇØ¾ßÇÒ °ªÀ» popÇØ¼­ °á°ú¸¦ °ª ½ºÅÃ¿¡ ´Ù½Ã »ðÀÔÇÑ´Ù.
+				//ê¸°ì¡´ ê°’ ìŠ¤íƒì— ìžˆëŠ” ê°’ì„ ë¨¼ì € ê³„ì‚° í•´ì•¼ë˜ë©´ ê³„ì‚°í•´ì•¼í•  ê°’ì„ popí•´ì„œ ê²°ê³¼ë¥¼ ê°’ ìŠ¤íƒì— ë‹¤ì‹œ ì‚½ìž…í•œë‹¤.
 			    else{
 					OperatorPush(opr);
 					OperatorPush(A);
@@ -260,8 +260,8 @@ void main()
 			}
 		}
 
-		// °ýÈ£°¡ ÀÖÀ»¶§ ¿¬»êÀ» ÇÏ´Â ÄÚµåÀÌ´Ù.
-		//'('°¡ ³ªÅ¸³ª¸é ¿¬»êÀÚ¸¦ ²¨³»°í ')'Àü±îÀÚÀÇ °ªÀ» °è»êÇÔ¼ö·Î °è»êÇÑ´Ù.
+		// ê´„í˜¸ê°€ ìžˆì„ë•Œ ì—°ì‚°ì„ í•˜ëŠ” ì½”ë“œì´ë‹¤.
+		//'('ê°€ ë‚˜íƒ€ë‚˜ë©´ ì—°ì‚°ìžë¥¼ êº¼ë‚´ê³  ')'ì „ê¹Œìžì˜ ê°’ì„ ê³„ì‚°í•¨ìˆ˜ë¡œ ê³„ì‚°í•œë‹¤.
 		else if (A == '('){
 			OperatorPush(A);
 		}
@@ -280,7 +280,7 @@ void main()
 
 	}
 
-	//½ºÅÃ¿¡ ÀÖ´Â °ªÀÌ ¾ø¾îÁú¶§±îÁö °è»êÀ» ¹Ýº¹ÇÑ´Ù.
+	//ìŠ¤íƒì— ìžˆëŠ” ê°’ì´ ì—†ì–´ì§ˆë•Œê¹Œì§€ ê³„ì‚°ì„ ë°˜ë³µí•œë‹¤.
 	while (!Is_Empty_OperatorStack()){
 		value1 = ValuePop();
 		value2 = ValuePop();
@@ -291,60 +291,60 @@ void main()
 
 	
 	
-	//¸¶Áö¸·¿¡ popµÈ °ªÀ» ÀúÀåÇÑ´Ù.
+	//ë§ˆì§€ë§‰ì— popëœ ê°’ì„ ì €ìž¥í•œë‹¤.
 	table = ValuePop();
-	//ÀÌÀü °ªÀ» Å×ÀÌºí¿¡ ÀúÀåÇÏ±â À§ÇØ¼­ °ªÀÇ pop°ªÀ» º¯¼ö¿¡ ¸ÕÀú ÀúÀåÇÑ´Ù.
+	//ì´ì „ ê°’ì„ í…Œì´ë¸”ì— ì €ìž¥í•˜ê¸° ìœ„í•´ì„œ ê°’ì˜ popê°’ì„ ë³€ìˆ˜ì— ë¨¼ì € ì €ìž¥í•œë‹¤.
 
 
 	printf("%s = %d\n", buf, table);
-	//ÃÖÁ¾ °á°úÃâ·Â¹®
+	//ìµœì¢… ê²°ê³¼ì¶œë ¥ë¬¸
 
 	int go;
-	//µÚ¿¡ ¼ö½Ä°è»êÀ» Ãß°¡·Î ÁøÇàÇÒÁö ¿©ºÎ¸¦ ÀúÀåÇÏ´Â º¯¼ö
+	//ë’¤ì— ìˆ˜ì‹ê³„ì‚°ì„ ì¶”ê°€ë¡œ ì§„í–‰í• ì§€ ì—¬ë¶€ë¥¼ ì €ìž¥í•˜ëŠ” ë³€ìˆ˜
 
-	printf("¼ö½Ä°è»êÀ» °è¼Ó ÇÏ½Ã°Ú½À´Ï±î?(1=yes,0=no)");
+	printf("ìˆ˜ì‹ê³„ì‚°ì„ ê³„ì† í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(1=yes,0=no)");
 	scanf("%d", &go);
-	//go º¯¼ö¿¡ °á°ú¸¦ ÀÔ·Â¹Þ°í
-	//switch¹®À» ÅëÇØ ÄÚµå¸¦ ÁøÇàÇÑ´Ù.
+	//go ë³€ìˆ˜ì— ê²°ê³¼ë¥¼ ìž…ë ¥ë°›ê³ 
+	//switchë¬¸ì„ í†µí•´ ì½”ë“œë¥¼ ì§„í–‰í•œë‹¤.
 
 	
 	nValue = 0;
-	//ÀÔ·Â¹ÞÀ» °ªÀ» ÀúÀåÇÏ±â À§ÇÑ º¯¼ö ÃÊ±âÈ­
+	//ìž…ë ¥ë°›ì„ ê°’ì„ ì €ìž¥í•˜ê¸° ìœ„í•œ ë³€ìˆ˜ ì´ˆê¸°í™”
 	switch (go)
 	{
 	case 1:
-		//1À» ÀÔ·ÂÇÒ °æ¿ì Ãß°¡ ¿¬»ê¸ðµå ÁøÀÔ
+		//1ì„ ìž…ë ¥í•  ê²½ìš° ì¶”ê°€ ì—°ì‚°ëª¨ë“œ ì§„ìž…
 		
-		printf("ÀÌÀü ¿¬»êÀÇ °ªÀº %d ÀÔ´Ï´Ù.\n",table);
+		printf("ì´ì „ ì—°ì‚°ì˜ ê°’ì€ %d ìž…ë‹ˆë‹¤.\n",table);
 
 		printf("-------------------------------------------------------\n  ");
-		printf("°è»êÇÏ·Á´Â ¿¬»êÀÚ¸¦ÀÔ·ÂÇØÁÖ¼¼¿ä(ex:+,*,/)   :   ");
+		printf("ê³„ì‚°í•˜ë ¤ëŠ” ì—°ì‚°ìžë¥¼ìž…ë ¥í•´ì£¼ì„¸ìš”(ex:+,*,/)   :   ");
 		scanf("%s", &opr2);
 
 
-		printf("°è»êÇÏ·Á´Â °ªÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä(ex: 12,30,1)   :   ");
+		printf("ê³„ì‚°í•˜ë ¤ëŠ” ê°’ì„ ìž…ë ¥í•´ì£¼ì„¸ìš”(ex: 12,30,1)   :   ");
 		scanf("%d", &nValue);
 		printf("\n-------------------------------------------------------\n  ");
 
-		printf("\nÃß°¡ ¿¬»ê °á°ú´Â %d ÀÔ´Ï´Ù.", Calculate2(table, nValue, opr2[0]));
+		printf("\nì¶”ê°€ ì—°ì‚° ê²°ê³¼ëŠ” %d ìž…ë‹ˆë‹¤.", Calculate2(table, nValue, opr2[0]));
 	
-		printf("\nÃß°¡ ¿¬»ê ¿Ï·á");
+		printf("\nì¶”ê°€ ì—°ì‚° ì™„ë£Œ");
 
 
 
 		break;
 	case 0:
-		printf("°è»êÀ» Á¾·áÇÕ´Ï´Ù.");
+		printf("ê³„ì‚°ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 		break;
 
-		//°è»ê±â Á¾·á
+		//ê³„ì‚°ê¸° ì¢…ë£Œ
 	default:
-		printf("1°ú 0À¸·Î¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		printf("1ê³¼ 0ìœ¼ë¡œë§Œ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
 		
 	}
 
 
-
+hi editor
 
 
 }
