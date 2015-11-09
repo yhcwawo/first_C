@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 //scanf문을 사용하므로 경고메시지가 나오지 않도록 한다.
-
+// 수정(조혁준)
 //헤더파일 정의
 #include<stdio.h>
 #include<string.h>
