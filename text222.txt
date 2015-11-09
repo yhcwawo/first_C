@@ -16,7 +16,7 @@ char OperatorStack[100]; //스택 연산자 배열
 char ValueStack[100];  //스택 값 배열
 
 
-//teststsestst
+
 
 int IsEmptyValueStack()
 {
